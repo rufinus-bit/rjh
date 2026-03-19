@@ -14,7 +14,6 @@ var _SI=[
 var _sc=0;
 
 function _findHero(){
-  // Find the hero section by its known class
   var sections=document.querySelectorAll('section');
   for(var i=0;i<sections.length;i++){
     if(sections[i].className&&sections[i].className.indexOf('from-slate-900')!==-1&&sections[i].className.indexOf('py-20')!==-1){
@@ -62,10 +61,41 @@ function _init(hero){
   });
   hero.prepend(stats);hero.prepend(dots);hero.prepend(ctr);hero.prepend(accent);hero.prepend(ov2);hero.prepend(ov1);hero.prepend(bg);
 
+  // Fix text alignment and styles
+  var innerDiv=hero.querySelector('div.container,div[class*="container"],div[class*="mx-auto"]');
+  if(innerDiv){
+    innerDiv.style.display='flex';
+    innerDiv.style.justifyContent='flex-start';
+  }
+  var textWrap=hero.querySelector('div[class*="max-w"],div[class*="text-center"]');
+  if(textWrap){
+    textWrap.style.textAlign='left';
+    textWrap.style.maxWidth='680px';
+    textWrap.style.marginLeft='0';
+    textWrap.style.marginRight='auto';
+  }
+
   var titleEl=hero.querySelector('h2');
   var descEl=hero.querySelector('p');
-  if(titleEl){titleEl.style.transition='opacity 0.4s,transform 0.4s';titleEl.style.textShadow='0 2px 30px rgba(0,0,0,0.8)';titleEl.textContent=_SI[0].title;}
-  if(descEl){descEl.style.transition='opacity 0.4s 0.1s,transform 0.4s 0.1s';descEl.style.textShadow='0 1px 10px rgba(0,0,0,0.7)';descEl.textContent=_SI[0].desc;}
+  if(titleEl){
+    titleEl.style.textAlign='left';
+    titleEl.style.transition='opacity 0.4s,transform 0.4s';
+    titleEl.style.textShadow='0 2px 30px rgba(0,0,0,0.8)';
+    titleEl.style.fontSize='clamp(2rem,4vw,3.4rem)';
+    titleEl.style.fontWeight='800';
+    titleEl.textContent=_SI[0].title;
+  }
+  if(descEl){
+    descEl.style.textAlign='left';
+    descEl.style.transition='opacity 0.4s 0.1s,transform 0.4s 0.1s';
+    descEl.style.textShadow='0 1px 10px rgba(0,0,0,0.7)';
+    descEl.textContent=_SI[0].desc;
+  }
+
+  // Add orange divider after title
+  var divider=document.createElement('div');
+  divider.style.cssText='width:56px;height:3px;background:linear-gradient(90deg,#f97316,#ea580c);margin:0.8rem 0 1rem;border-radius:2px';
+  if(titleEl&&titleEl.parentNode){titleEl.parentNode.insertBefore(divider,titleEl.nextSibling);}
 
   hero.querySelectorAll(':scope>div').forEach(function(el){
     if(el!==bg&&el!==ov1&&el!==ov2&&el!==accent&&el!==ctr&&el!==dots&&el!==stats){
@@ -96,14 +126,11 @@ function _init(hero){
   setInterval(function(){_goto((_sc+1)%_SI.length);},5000);
 }
 
-// Watch for React to render the hero section
 var obs=new MutationObserver(function(){
   var hero=_findHero();
   if(hero){obs.disconnect();_init(hero);}
 });
 obs.observe(document.documentElement,{childList:true,subtree:true});
-
-// Also try immediately
 var hero=_findHero();
 if(hero){obs.disconnect();_init(hero);}
 })();
