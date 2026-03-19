@@ -1,18 +1,4 @@
-const _SI=[
-  {src:'/slide1.jpg',title:'Furnace Delivery',desc:'Industrial-grade furnace ready for client delivery'},
-  {src:'/slide2.jpg',title:'Coil Lining',desc:'Coil relining works'},
-  {src:'/slide3.jpg',title:'Heat Treatment Furnace',desc:'Custom-built heat treatment furnace'},
-  {src:'/slide4.jpg',title:'Industrial Furnace',desc:'Heavy-duty industrial furnace unit'},
-  {src:'/slide5.jpg',title:'RJ Heat Tech Factory',desc:'Our manufacturing facility in Coimbatore'},
-  {src:'/slide6.jpg',title:'Bogie Type Heat Treatment Furnace',desc:'Custom-built furnace'},
-  {src:'/slide7.jpg',title:'Elevator Furnace',desc:'Elevator-type box furnace at client site'},
-  {src:'/slide8.jpg',title:'Furnace Installation',desc:'On-site furnace installation and commissioning'},
-  {src:'/slide9.jpg',title:'Client Delivery',desc:'Completed furnace at client facility'},
-  {src:'/slide10.jpg',title:'Pit Furnace',desc:'Custom pit furnace build'}
-];let _sc=0;
-function _hs(){
-  const hero=document.getElementById('hero-section');
-  if(!hero){setTimeout(_hs,300);return;}
+return;}
   hero.style.cssText+='position:relative;overflow:hidden;min-height:520px;';
   const bg=document.createElement('div');
   bg.id='_hbg';
