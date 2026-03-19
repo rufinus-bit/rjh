@@ -35,11 +35,11 @@ function _init(hero){
   var bg=document.createElement('div');
   bg.style.cssText='position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 1.2s;z-index:0;background-image:url('+_SI[0].src+')';
 
-  // Dark overlays
+  // Stronger dark overlays
   var ov1=document.createElement('div');
-  ov1.style.cssText='position:absolute;inset:0;background:linear-gradient(to right,rgba(2,6,23,0.92) 0%,rgba(2,6,23,0.7) 45%,rgba(2,6,23,0.2) 100%);z-index:1';
+  ov1.style.cssText='position:absolute;inset:0;background:linear-gradient(to right,rgba(2,6,23,0.95) 0%,rgba(2,6,23,0.8) 50%,rgba(2,6,23,0.35) 100%);z-index:1';
   var ov2=document.createElement('div');
-  ov2.style.cssText='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(2,6,23,0.3) 0%,transparent 30%,transparent 70%,rgba(2,6,23,0.6) 100%);z-index:1';
+  ov2.style.cssText='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(2,6,23,0.4) 0%,transparent 30%,transparent 70%,rgba(2,6,23,0.7) 100%);z-index:1';
 
   // Orange accent bar on left
   var accent=document.createElement('div');
@@ -47,73 +47,65 @@ function _init(hero){
 
   // Stats bar at bottom
   var stats=document.createElement('div');
-  stats.style.cssText='position:absolute;bottom:0;left:0;right:0;background:rgba(2,6,23,0.88);border-top:1px solid rgba(249,115,22,0.2);display:flex;z-index:3';
+  stats.style.cssText='position:absolute;bottom:0;left:0;right:0;background:rgba(2,6,23,0.92);border-top:1px solid rgba(249,115,22,0.2);display:flex;z-index:3';
   [['40+','Years Experience'],['500+','Clients Served'],['24/7','Support']].forEach(function(s){
     var el=document.createElement('div');
     el.style.cssText='flex:1;padding:14px 20px;text-align:center;border-right:1px solid rgba(255,255,255,0.07)';
-    el.innerHTML='<div style="font-size:1.4rem;font-weight:800;color:#f97316">'+s[0]+'</div><div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:4px">'+s[1]+'</div>';
+    el.innerHTML='<div style="font-size:1.4rem;font-weight:800;color:#f97316;line-height:1">'+s[0]+'</div><div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:4px">'+s[1]+'</div>';
     stats.appendChild(el);
   });
 
   hero.prepend(stats);hero.prepend(accent);hero.prepend(ov2);hero.prepend(ov1);hero.prepend(bg);
 
-  // Fix text alignment - left align
-  var textWrap=hero.querySelector('div[class*="max-w"],div[class*="text-center"]');
-  if(textWrap){
-    textWrap.style.textAlign='left';
-    textWrap.style.maxWidth='680px';
-    textWrap.style.marginLeft='0';
-  }
+  // Fix layout - left align
   var container=hero.querySelector('div[class*="container"],div[class*="mx-auto"]');
-  if(container){
-    container.style.display='flex';
-    container.style.justifyContent='flex-start';
-  }
+  if(container){container.style.cssText+=';display:flex;justify-content:flex-start;padding-left:5%';}
+  var textWrap=hero.querySelector('div[class*="max-w"],div[class*="text-center"]');
+  if(textWrap){textWrap.style.cssText+=';text-align:left;max-width:680px;margin-left:0;margin-right:auto';}
 
   // Title
   var titleEl=hero.querySelector('h2');
   if(titleEl){
-    titleEl.style.textAlign='left';
-    titleEl.style.transition='opacity 0.4s,transform 0.4s';
-    titleEl.style.textShadow='0 2px 30px rgba(0,0,0,0.8)';
-    titleEl.style.fontSize='clamp(2rem,4vw,3.4rem)';
-    titleEl.style.fontWeight='800';
-    titleEl.style.lineHeight='1.1';
+    titleEl.style.cssText+=';text-align:left;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:1.1;text-shadow:0 2px 30px rgba(0,0,0,0.9);transition:opacity 0.4s,transform 0.4s';
     titleEl.textContent=_SI[0].title;
-
-    // Add orange divider after title
-    var divider=document.createElement('div');
-    divider.style.cssText='width:56px;height:3px;background:linear-gradient(90deg,#f97316,#ea580c);margin:0.8rem 0 1rem;border-radius:2px';
-    titleEl.parentNode.insertBefore(divider,titleEl.nextSibling);
+    // Orange divider
+    var div=document.createElement('div');
+    div.style.cssText='width:56px;height:3px;background:linear-gradient(90deg,#f97316,#ea580c);margin:0.8rem 0 1rem;border-radius:2px';
+    titleEl.parentNode.insertBefore(div,titleEl.nextSibling);
+    // EST badge before title
+    var badge=document.createElement('div');
+    badge.style.cssText='display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.35);color:#fb923c;font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:1.2rem;width:fit-content';
+    badge.innerHTML='<span style="width:6px;height:6px;background:#f97316;border-radius:50%;display:inline-block"></span> Est. 1989 · Coimbatore';
+    titleEl.parentNode.insertBefore(badge,titleEl);
   }
 
   // Description
   var descEl=hero.querySelector('p');
   if(descEl){
-    descEl.style.textAlign='left';
-    descEl.style.transition='opacity 0.4s 0.1s,transform 0.4s 0.1s';
-    descEl.style.textShadow='0 1px 10px rgba(0,0,0,0.7)';
+    descEl.style.cssText+=';text-align:left;text-shadow:0 1px 10px rgba(0,0,0,0.8);transition:opacity 0.4s 0.1s,transform 0.4s 0.1s';
     descEl.textContent=_SI[0].desc;
   }
 
-  // Keep the original button but style it
+  // Add "View Complete Catalog" button next to existing button
   var btn=hero.querySelector('button');
   if(btn){
-    btn.style.display='inline-block';
-    btn.style.marginTop='1rem';
+    btn.style.cssText+=';margin-top:1rem';
+    var btn2=document.createElement('button');
+    btn2.textContent='View Complete Catalog';
+    btn2.style.cssText='background:transparent;color:#f8fafc;padding:14px 28px;border:1px solid rgba(248,250,252,0.3);font-size:0.9rem;font-weight:600;cursor:pointer;margin-left:12px;margin-top:1rem';
+    btn2.onclick=function(){var el=document.querySelector('button[onclick*="catalog"],button');if(el)el.click();};
+    btn.parentNode.insertBefore(btn2,btn.nextSibling);
   }
 
   // Make content sit above overlays
   hero.querySelectorAll(':scope>div').forEach(function(el){
     if(el!==bg&&el!==ov1&&el!==ov2&&el!==accent&&el!==stats){
-      el.style.position='relative';
-      el.style.zIndex='2';
+      el.style.position='relative';el.style.zIndex='2';
     }
   });
 
   function _goto(n){
-    _sc=n;
-    bg.style.opacity='0';
+    _sc=n;bg.style.opacity='0';
     if(titleEl){titleEl.style.opacity='0';titleEl.style.transform='translateY(12px)';}
     if(descEl){descEl.style.opacity='0';descEl.style.transform='translateY(8px)';}
     setTimeout(function(){
