@@ -8,7 +8,6 @@ var _SI=[
   {src:'/slide6.jpg',title:'Bogie Type Heat Treatment Furnace',desc:'Custom-built furnace'},
   {src:'/slide7.jpg',title:'Wire Annealing Furnace',desc:'Efficient heat-treatment solution for producing soft, high-quality annealed metal wires'},
   {src:'/slide8.jpg',title:'Furnace Installation',desc:'On-site furnace installation and commissioning'},
-  {src:'/slide9.jpg',title:'Client Delivery',desc:'Completed furnace at client facility'},
   {src:'/slide10.jpg',title:'Pit Furnace',desc:'Custom pit furnace build'}
 ];
 var _sc=0;
