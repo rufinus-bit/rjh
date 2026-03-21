@@ -6,7 +6,7 @@ var _SI=[
   {src:'/slide4.jpg',title:'Industrial Furnace',desc:'Heavy-duty industrial furnace unit'},
   {src:'/slide5.jpg',title:'RJ Heat Tech Factory',desc:'Our manufacturing facility in Coimbatore'},
   {src:'/slide6.jpg',title:'Bogie Type Heat Treatment Furnace',desc:'Custom-built furnace'},
-  {src:'/slide7.jpg',title:'Elevator Furnace',desc:'Elevator-type box furnace at client site'},
+  {src:'/slide7.jpg',title:'Wire Annealing Furnace',desc:'Efficient heat-treatment solution for producing soft, high-quality annealed metal wires'},
   {src:'/slide8.jpg',title:'Furnace Installation',desc:'On-site furnace installation and commissioning'},
   {src:'/slide9.jpg',title:'Client Delivery',desc:'Completed furnace at client facility'},
   {src:'/slide10.jpg',title:'Pit Furnace',desc:'Custom pit furnace build'}
@@ -33,13 +33,13 @@ function _init(hero){
 
   // Background image
   var bg=document.createElement('div');
-  bg.style.cssText='position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 1.2s;z-index:0;background-image:url('+_SI[0].src+')';
+  bg.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center center;background-repeat:no-repeat;transition:opacity 1.2s;z-index:0;background-image:url('+_SI[0].src+')';
 
   // Stronger dark overlays
   var ov1=document.createElement('div');
-  ov1.style.cssText='position:absolute;inset:0;background:linear-gradient(to right,rgba(2,6,23,0.95) 0%,rgba(2,6,23,0.8) 50%,rgba(2,6,23,0.35) 100%);z-index:1';
+  ov1.style.cssText='position:absolute;inset:0;background:linear-gradient(to right,rgba(2,6,23,0.92) 0%,rgba(2,6,23,0.7) 45%,rgba(2,6,23,0.2) 100%);z-index:1';
   var ov2=document.createElement('div');
-  ov2.style.cssText='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(2,6,23,0.4) 0%,transparent 30%,transparent 70%,rgba(2,6,23,0.7) 100%);z-index:1';
+  ov2.style.cssText='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(2,6,23,0.2) 0%,transparent 30%,transparent 70%,rgba(2,6,23,0.4) 100%);z-index:1';
 
   // Orange accent bar on left
   var accent=document.createElement('div');
