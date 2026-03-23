@@ -121,11 +121,18 @@ function _init(hero){
   setInterval(function(){_goto((_sc+1)%_SI.length);},5000);
 }
 
+function _initAll(){
+  var sections=document.querySelectorAll('section');
+  for(var i=0;i<sections.length;i++){
+    if(sections[i].className&&sections[i].className.indexOf('from-slate-900')!==-1&&sections[i].className.indexOf('py-20')!==-1){
+      _init(sections[i]);
+    }
+  }
+}
 var obs=new MutationObserver(function(){
-  var hero=_findHero();
-  if(hero){obs.disconnect();_init(hero);}
+  _initAll();
+  if(document.querySelectorAll('section[data-hi]').length>0){obs.disconnect();}
 });
 obs.observe(document.documentElement,{childList:true,subtree:true});
-var hero=_findHero();
-if(hero){obs.disconnect();_init(hero);}
+_initAll();
 })();
