@@ -47,7 +47,7 @@ function _init(hero){
   // Stats bar at bottom
   var stats=document.createElement('div');
   stats.style.cssText='position:absolute;bottom:0;left:0;right:0;background:rgba(2,6,23,0.92);border-top:1px solid rgba(249,115,22,0.2);display:flex;z-index:3';
-  [['40+','Years Experience'],['500+','Clients Served'],['24/7','Support']].forEach(function(s){
+  [['15+','Years Experience'],['50+','Clients Served']].forEach(function(s){
     var el=document.createElement('div');
     el.style.cssText='flex:1;padding:14px 20px;text-align:center;border-right:1px solid rgba(255,255,255,0.07)';
     el.innerHTML='<div style="font-size:1.4rem;font-weight:800;color:#f97316;line-height:1">'+s[0]+'</div><div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:4px">'+s[1]+'</div>';
