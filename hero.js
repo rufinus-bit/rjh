@@ -11,6 +11,7 @@ var _SI=[
   {src:'/slide9.jpg',title:'Pit Furnace',desc:'Custom pit furnace build'}
 ];
 var _sc=0;
+var _timer=null;
 
 function _findHero(){
   var sections=document.querySelectorAll('section');
@@ -74,29 +75,23 @@ function _init(hero){
     descEl.textContent=_SI[0].desc;
   }
 
-  // Fix the quote button to scroll to quote section
   var btn=hero.querySelector('button');
   if(btn){
     btn.style.cssText+=';margin-top:1rem';
     btn.onclick=function(e){
       e.preventDefault();
       var quoteSection=document.getElementById('quote-section');
-      if(quoteSection){
-        quoteSection.scrollIntoView({behavior:'smooth'});
-      }
+      if(quoteSection){quoteSection.scrollIntoView({behavior:'smooth'});}
     };
-    // Add View Complete Catalog button
     var btn2=document.createElement('button');
     btn2.textContent='View Complete Catalog';
     btn2.style.cssText='background:transparent;color:#f8fafc;padding:14px 28px;border:1px solid rgba(248,250,252,0.3);font-size:0.9rem;font-weight:600;cursor:pointer;margin-left:12px;margin-top:1rem';
     btn2.onclick=function(){
-      // Find and click the Complete Catalog nav button
       var navBtns=document.querySelectorAll('button,a');
       for(var i=0;i<navBtns.length;i++){
         var txt=navBtns[i].textContent||navBtns[i].innerText||'';
-        if(txt.toLowerCase().indexOf('catalog')!==-1){
-          navBtns[i].click();
-          return;
+        if(txt.toLowerCase().indexOf('catalog')!==-1&&navBtns[i]!==btn2){
+          navBtns[i].click();return;
         }
       }
     };
@@ -124,14 +119,19 @@ function _init(hero){
       if(descEl){descEl.style.opacity='1';descEl.style.transform='translateY(0)';}
     },600);
   }
-  setInterval(function(){_goto((_sc+1)%_SI.length);},5000);
+
+  if(_timer)clearInterval(_timer);
+  _timer=setInterval(function(){_goto((_sc+1)%_SI.length);},5000);
 }
 
-var obs=new MutationObserver(function(){
+// Watch for DOM changes continuously — handles React navigation
+var _obs=new MutationObserver(function(){
   var hero=_findHero();
-  if(hero){obs.disconnect();_init(hero);}
+  if(hero&&!hero.dataset.hi){_init(hero);}
 });
-obs.observe(document.documentElement,{childList:true,subtree:true});
+_obs.observe(document.documentElement,{childList:true,subtree:true});
+
+// Initial check
 var hero=_findHero();
-if(hero){obs.disconnect();_init(hero);}
+if(hero){_init(hero);}
 })();
