@@ -14,6 +14,16 @@ var _sc=0;
 var _timer=null;
 
 function _findHero(){
+  // Only run on home page - check if catalog page filter buttons exist
+  if(document.querySelector('[class*="Filter by"],h1,h2')){
+    var headings=document.querySelectorAll('h1,h2');
+    for(var j=0;j<headings.length;j++){
+      var txt=headings[j].innerText||headings[j].textContent||'';
+      if(txt.indexOf('Complete Furnace Catalog')!==-1||txt.indexOf('Catalog')!==-1){
+        return null; // We are on catalog page, skip
+      }
+    }
+  }
   var sections=document.querySelectorAll('section');
   for(var i=0;i<sections.length;i++){
     if(sections[i].className&&sections[i].className.indexOf('from-slate-900')!==-1&&sections[i].className.indexOf('py-20')!==-1){
