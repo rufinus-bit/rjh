@@ -90,8 +90,15 @@ function _init(hero){
     btn2.textContent='View Complete Catalog';
     btn2.style.cssText='background:transparent;color:#f8fafc;padding:14px 28px;border:1px solid rgba(248,250,252,0.3);font-size:0.9rem;font-weight:600;cursor:pointer;margin-left:12px;margin-top:1rem';
     btn2.onclick=function(){
-      var catalog=document.querySelector('[href*="catalog"],[onclick*="catalog"],button');
-      window.scrollTo({top:document.body.scrollHeight/3,behavior:'smooth'});
+      // Find and click the Complete Catalog nav button
+      var navBtns=document.querySelectorAll('button,a');
+      for(var i=0;i<navBtns.length;i++){
+        var txt=navBtns[i].textContent||navBtns[i].innerText||'';
+        if(txt.toLowerCase().indexOf('catalog')!==-1){
+          navBtns[i].click();
+          return;
+        }
+      }
     };
     btn.parentNode.insertBefore(btn2,btn.nextSibling);
   }
