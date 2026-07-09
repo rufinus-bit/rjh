@@ -37,6 +37,8 @@ function _init(hero){
   // Particles - dark ember colors
   var particleBg=document.createElement('div');
   particleBg.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;';
+  var colors=['#f97316','#ea580c','#c2410c','#fb923c','#f59e0b','#fed7aa'];
+  // Rising bubbles from bottom
   for(var p=0;p<35;p++){
     (function(){
       var particle=document.createElement('div');
@@ -44,9 +46,21 @@ function _init(hero){
       var dur=(2+Math.random()*4).toFixed(1);
       var delay=(Math.random()*4).toFixed(1);
       var size=(3+Math.random()*5).toFixed(1);
-      var colors=['#f97316','#ea580c','#c2410c','#fb923c','#f59e0b'];
       var color=colors[Math.floor(Math.random()*colors.length)];
       particle.style.cssText='position:absolute;bottom:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0;animation:rjrise '+dur+'s '+delay+'s infinite ease-out;';
+      particleBg.appendChild(particle);
+    })();
+  }
+  // Falling bubbles from top
+  for(var q=0;q<35;q++){
+    (function(){
+      var particle=document.createElement('div');
+      var x=Math.random()*100;
+      var dur=(2+Math.random()*4).toFixed(1);
+      var delay=(Math.random()*4).toFixed(1);
+      var size=(3+Math.random()*5).toFixed(1);
+      var color=colors[Math.floor(Math.random()*colors.length)];
+      particle.style.cssText='position:absolute;top:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0;animation:rjfall '+dur+'s '+delay+'s infinite ease-out;';
       particleBg.appendChild(particle);
     })();
   }
@@ -54,7 +68,7 @@ function _init(hero){
   if(!document.getElementById('rjheat-style')){
     var st=document.createElement('style');
     st.id='rjheat-style';
-    st.textContent='@keyframes rjrise{0%{transform:translateY(0) scale(1);opacity:0.9}40%{opacity:0.6}100%{transform:translateY(-350px) scale(0.05);opacity:0}}@keyframes rjblink{0%,100%{opacity:1}50%{opacity:0}}';
+    st.textContent='@keyframes rjrise{0%{transform:translateY(0) scale(1);opacity:0.9}40%{opacity:0.6}100%{transform:translateY(-350px) scale(0.05);opacity:0}}@keyframes rjfall{0%{transform:translateY(0) scale(1);opacity:0.9}40%{opacity:0.6}100%{transform:translateY(350px) scale(0.05);opacity:0}}@keyframes rjblink{0%,100%{opacity:1}50%{opacity:0}}';
     document.head.appendChild(st);
   }
 
