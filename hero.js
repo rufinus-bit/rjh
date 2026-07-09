@@ -22,11 +22,15 @@ function _init(hero){
   hero.dataset.hi='1';
   hero.style.cssText='position:relative;overflow:hidden;min-height:520px;padding:0;background:#0a0a0a;';
 
-  // Heat glow background
+  // Heat glow background - darker, deeper red-black tone
   var glowBg=document.createElement('div');
-  glowBg.style.cssText='position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(to top,rgba(249,115,22,0.1),transparent);z-index:0;';
+  glowBg.style.cssText='position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(120,40,0,0.18),rgba(180,50,0,0.06),transparent);z-index:0;';
 
-  // Particles
+  // Dark overlay to deepen the whole hero
+  var darkOverlay=document.createElement('div');
+  darkOverlay.style.cssText='position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:0;';
+
+  // Particles - dark ember colors
   var particleBg=document.createElement('div');
   particleBg.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;';
   for(var p=0;p<20;p++){
@@ -35,8 +39,10 @@ function _init(hero){
       var x=Math.random()*100;
       var dur=(2+Math.random()*4).toFixed(1);
       var delay=(Math.random()*4).toFixed(1);
-      var size=(1.5+Math.random()*3).toFixed(1);
-      particle.style.cssText='position:absolute;bottom:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:#f97316;border-radius:50%;opacity:0;animation:rjrise '+dur+'s '+delay+'s infinite ease-out;';
+      var size=(1+Math.random()*2).toFixed(1);
+      var colors=['#7c2d00','#92400e','#b45309','#c2410c'];
+      var color=colors[Math.floor(Math.random()*colors.length)];
+      particle.style.cssText='position:absolute;bottom:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0;animation:rjrise '+dur+'s '+delay+'s infinite ease-out;';
       particleBg.appendChild(particle);
     })();
   }
@@ -44,7 +50,7 @@ function _init(hero){
   if(!document.getElementById('rjheat-style')){
     var st=document.createElement('style');
     st.id='rjheat-style';
-    st.textContent='@keyframes rjrise{0%{transform:translateY(0) scale(1);opacity:0.7}100%{transform:translateY(-300px) scale(0.2);opacity:0}}@keyframes rjblink{0%,100%{opacity:1}50%{opacity:0}}';
+    st.textContent='@keyframes rjrise{0%{transform:translateY(0) scale(1);opacity:0.4}100%{transform:translateY(-300px) scale(0.2);opacity:0}}@keyframes rjblink{0%,100%{opacity:1}50%{opacity:0}}';
     document.head.appendChild(st);
   }
 
@@ -116,6 +122,7 @@ function _init(hero){
 
   hero.innerHTML='';
   hero.appendChild(glowBg);
+  hero.appendChild(darkOverlay);
   hero.appendChild(particleBg);
   hero.appendChild(leftPanel);
   hero.appendChild(statsBar);
