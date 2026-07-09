@@ -69,23 +69,23 @@ function _init(hero){
 
   // === DIAGONAL RIGHT PANEL ===
   var rightPanel=document.createElement('div');
-  rightPanel.style.cssText='position:absolute;top:0;bottom:0;right:0;width:50%;background:linear-gradient(135deg,#1a1a1a 0%,#0d0d0d 100%);clip-path:polygon(18% 0,100% 0,100% 100%,0% 100%);display:flex;align-items:center;justify-content:center;z-index:1;';
+  rightPanel.style.cssText='position:absolute;top:0;bottom:0;right:0;width:50%;clip-path:polygon(18% 0,100% 0,100% 100%,0% 100%);overflow:hidden;z-index:1;';
 
   var rightInner=document.createElement('div');
-  rightInner.style.cssText='margin-left:40px;text-align:center;';
+  rightInner.style.cssText='position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:70px;';
 
   // Slide image
   var slideImg=document.createElement('div');
   slideImg.id='rj-slide-img';
-  slideImg.style.cssText='width:160px;height:120px;background-size:cover;background-position:center;border-radius:8px;border:2px solid rgba(249,115,22,0.4);margin:0 auto;background-image:url('+_SI[0].src+');transition:opacity 0.8s;';
+  slideImg.style.cssText='position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('+_SI[0].src+');transition:opacity 0.8s;';
 
   var furnaceLabel=document.createElement('div');
-  furnaceLabel.style.cssText='font-size:9px;color:#f97316;letter-spacing:0.2em;text-transform:uppercase;margin-top:10px;font-weight:700;';
+  furnaceLabel.style.cssText='font-size:9px;color:#fff;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,0.8);';
   furnaceLabel.textContent='Heat Treatment';
 
   // Slide dots
   var dotsEl=document.createElement('div');
-  dotsEl.style.cssText='display:flex;gap:5px;margin-top:10px;justify-content:center;';
+  dotsEl.style.cssText='display:flex;gap:5px;justify-content:center;';
   for(var d=0;d<_SI.length;d++){
     (function(idx){
       var dot=document.createElement('div');
