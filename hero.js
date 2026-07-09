@@ -24,23 +24,27 @@ function _init(hero){
 
   // Heat glow background - darker, deeper red-black tone
   var glowBg=document.createElement('div');
-  glowBg.style.cssText='position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(120,40,0,0.18),rgba(180,50,0,0.06),transparent);z-index:0;';
+  glowBg.style.cssText='position:absolute;bottom:0;left:0;right:0;height:80%;background:linear-gradient(to top,rgba(249,115,22,0.65) 0%,rgba(234,88,12,0.40) 30%,rgba(194,65,12,0.18) 60%,transparent 100%);z-index:0;';
+
+  // Extra orange pulse layer at bottom
+  var glowBg2=document.createElement('div');
+  glowBg2.style.cssText='position:absolute;bottom:0;left:20%;right:20%;height:40%;background:radial-gradient(ellipse at bottom,rgba(249,115,22,0.45) 0%,transparent 70%);z-index:0;';
 
   // Dark overlay to deepen the whole hero
   var darkOverlay=document.createElement('div');
-  darkOverlay.style.cssText='position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:0;';
+  darkOverlay.style.cssText='position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:0;';
 
   // Particles - dark ember colors
   var particleBg=document.createElement('div');
   particleBg.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;';
-  for(var p=0;p<20;p++){
+  for(var p=0;p<35;p++){
     (function(){
       var particle=document.createElement('div');
       var x=Math.random()*100;
       var dur=(2+Math.random()*4).toFixed(1);
       var delay=(Math.random()*4).toFixed(1);
-      var size=(1+Math.random()*2).toFixed(1);
-      var colors=['#7c2d00','#92400e','#b45309','#c2410c'];
+      var size=(3+Math.random()*5).toFixed(1);
+      var colors=['#f97316','#ea580c','#c2410c','#fb923c','#f59e0b'];
       var color=colors[Math.floor(Math.random()*colors.length)];
       particle.style.cssText='position:absolute;bottom:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0;animation:rjrise '+dur+'s '+delay+'s infinite ease-out;';
       particleBg.appendChild(particle);
@@ -50,7 +54,7 @@ function _init(hero){
   if(!document.getElementById('rjheat-style')){
     var st=document.createElement('style');
     st.id='rjheat-style';
-    st.textContent='@keyframes rjrise{0%{transform:translateY(0) scale(1);opacity:0.4}100%{transform:translateY(-300px) scale(0.2);opacity:0}}@keyframes rjblink{0%,100%{opacity:1}50%{opacity:0}}';
+    st.textContent='@keyframes rjrise{0%{transform:translateY(0) scale(1);opacity:0.9}40%{opacity:0.6}100%{transform:translateY(-350px) scale(0.05);opacity:0}}@keyframes rjblink{0%,100%{opacity:1}50%{opacity:0}}';
     document.head.appendChild(st);
   }
 
@@ -122,6 +126,7 @@ function _init(hero){
 
   hero.innerHTML='';
   hero.appendChild(glowBg);
+  hero.appendChild(glowBg2);
   hero.appendChild(darkOverlay);
   hero.appendChild(particleBg);
   hero.appendChild(leftPanel);
