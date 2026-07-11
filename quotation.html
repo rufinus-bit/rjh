@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request a Quote - RJ HEAT TECH SERVICES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b}
+    /* Navbar */
+    nav{background:#0f172a;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-brand{display:flex;align-items:center;gap:14px}
+    .nav-logo{width:60px;height:60px;object-fit:contain}
+    .nav-title{color:#fff;font-weight:700;font-size:1rem;line-height:1.2}
+    .nav-sub{color:#94a3b8;font-size:0.75rem}
+    .nav-links{display:flex;gap:8px}
+    .nav-btn{padding:8px 20px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;border:none;text-decoration:none}
+    .nav-outline{background:transparent;color:#cbd5e1;border:1px solid rgba(255,255,255,0.15)}
+    .nav-active{background:#f97316;color:#fff}
+    /* Hero */
+    .hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#7c2d12 100%);padding:4rem 2rem;text-align:center;color:#fff}
+    .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1rem}
+    .hero h1 span{color:#f97316}
+    .hero p{color:#94a3b8;font-size:1.1rem;max-width:600px;margin:0 auto}
+    /* Form */
+    .form-container{max-width:800px;margin:3rem auto;padding:0 1.5rem}
+    .form-card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:2.5rem}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group.full{grid-column:1/-1}
+    label{font-size:0.85rem;font-weight:600;color:#475569}
+    input,select,textarea{padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:0.95rem;font-family:'Inter',sans-serif;transition:border-color 0.2s;outline:none;width:100%}
+    input:focus,select:focus,textarea:focus{border-color:#f97316}
+    textarea{resize:vertical;min-height:120px}
+    .submit-btn{background:#f97316;color:#fff;border:none;padding:14px 32px;font-size:1rem;font-weight:700;border-radius:8px;cursor:pointer;width:100%;margin-top:1rem;transition:background 0.2s}
+    .submit-btn:hover{background:#ea580c}
+    .success{display:none;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:1.5rem;text-align:center;margin-top:1rem}
+    .success h3{color:#065f46;font-size:1.2rem;margin-bottom:0.5rem}
+    .success p{color:#047857;font-size:0.9rem}
+    /* Footer */
+    footer{background:#0f172a;color:#64748b;text-align:center;padding:2rem;margin-top:3rem;font-size:0.85rem}
+    footer span{color:#f97316}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:1}}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-brand">
+    <img src="/logo_transparent.png" class="nav-logo" alt="RJ Logo"/>
+    <div>
+      <div class="nav-title">RJ HEAT TECH SERVICES</div>
+      <div class="nav-sub">Industrial Furnace Solutions</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/" class="nav-btn nav-outline">Home</a>
+    <a href="/#catalog" class="nav-btn nav-outline">Catalog</a>
+    <a href="/quotation.html" class="nav-btn nav-active">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Request a <span>Custom Quote</span></h1>
+  <p>Get a personalized quote tailored to your specific requirements. Our team will respond within 24 hours.</p>
+</div>
+
+<!-- Form -->
+<div class="form-container">
+  <div class="form-card">
+    <form id="quoteForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" placeholder="Your full name" required/>
+        </div>
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" placeholder="Your company"/>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" required/>
+        </div>
+        <div class="form-group">
+          <label>Furnace Type *</label>
+          <select required>
+            <option value="">Select furnace type</option>
+            <option>Induction Melting Furnace</option>
+            <option>Electric Arc Furnace</option>
+            <option>Box Furnace</option>
+            <option>Pit Furnace</option>
+            <option>Bogie Type Furnace</option>
+            <option>Wire Annealing Furnace</option>
+            <option>Elevator Furnace</option>
+            <option>Conveyor Furnace</option>
+            <option>Muffle Furnace</option>
+            <option>Vacuum Furnace</option>
+            <option>Rotary Kiln Furnace</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Capacity Required</label>
+          <input type="text" placeholder="e.g. 500kg, 1000L"/>
+        </div>
+        <div class="form-group">
+          <label>Temperature Range</label>
+          <input type="text" placeholder="e.g. Up to 1200°C"/>
+        </div>
+        <div class="form-group">
+          <label>Budget Range</label>
+          <select>
+            <option value="">Select budget range</option>
+            <option>Under ₹5 Lakhs</option>
+            <option>₹5 - ₹15 Lakhs</option>
+            <option>₹15 - ₹50 Lakhs</option>
+            <option>₹50 Lakhs - ₹1 Crore</option>
+            <option>Above ₹1 Crore</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Special Requirements / Additional Details</label>
+          <textarea placeholder="Describe your specific requirements, application, material to be processed, etc."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Submit Quote Request</button>
+    </form>
+    <div class="success" id="successMsg">
+      <h3>✅ Quote Request Submitted!</h3>
+      <p>Thank you! Our team will contact you within 24 hours with a personalized quote.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 <span>RJ Heat Tech Services</span> · Coimbatore, Tamil Nadu · +91 95008 93151</p>
+</footer>
+
+<script>
+document.getElementById('quoteForm').onsubmit=function(e){
+  e.preventDefault();
+  this.style.display='none';
+  document.getElementById('successMsg').style.display='block';
+  window.scrollTo({top:document.querySelector('.form-card').offsetTop,behavior:'smooth'});
+};
+
+// Pre-select furnace type from URL
+var params = new URLSearchParams(window.location.search);
+var furnace = params.get('furnace');
+if(furnace){
+  var sel = document.querySelector('select');
+  if(sel){
+    for(var i=0;i<sel.options.length;i++){
+      if(sel.options[i].text === furnace){
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>
