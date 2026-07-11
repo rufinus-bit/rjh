@@ -49,7 +49,14 @@ function _init(hero){
       var color=colors[Math.floor(Math.random()*colors.length)];
       particle.style.cssText='position:absolute;bottom:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0;animation:rjrise '+dur+'s '+delay+'s infinite ease-out;';
       particleBg.appendChild(particle);
-    })();
+    
+function _hideQuote(){
+  var qs=document.getElementById('quote-section');
+  if(qs){qs.style.display='none';return;}
+  setTimeout(_hideQuote,300);
+}
+_hideQuote();
+})();
   }
   // Falling bubbles from top
   for(var q=0;q<35;q++){
@@ -62,7 +69,14 @@ function _init(hero){
       var color=colors[Math.floor(Math.random()*colors.length)];
       particle.style.cssText='position:absolute;top:-10px;left:'+x+'%;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;opacity:0;animation:rjfall '+dur+'s '+delay+'s infinite ease-out;';
       particleBg.appendChild(particle);
-    })();
+    
+function _hideQuote(){
+  var qs=document.getElementById('quote-section');
+  if(qs){qs.style.display='none';return;}
+  setTimeout(_hideQuote,300);
+}
+_hideQuote();
+})();
   }
 
   if(!document.getElementById('rjheat-style')){
@@ -106,8 +120,7 @@ function _init(hero){
   btn1.textContent='Request a Custom Quote';
   btn1.style.cssText='background:#f97316;color:#fff;padding:10px 20px;border:none;font-size:12px;font-weight:700;border-radius:4px;cursor:pointer;';
   btn1.onclick=function(){
-    var qs=document.getElementById('quote-section');
-    if(qs)qs.scrollIntoView({behavior:'smooth'});
+    window.location.href='/quotation.html';
   };
 
   var btn2=document.createElement('button');
@@ -129,12 +142,10 @@ function _init(hero){
   var statsBar=document.createElement('div');
   statsBar.style.cssText='position:absolute;bottom:0;left:0;right:0;background:rgba(10,10,10,0.95);border-top:1px solid rgba(249,115,22,0.2);display:flex;z-index:3;height:60px;';
 
-  [['15+','Years Experience'],['50+','Clients Served']].forEach(function(s){
-    var sd=document.createElement('div');
-    sd.style.cssText='flex:1;padding:10px 20px;text-align:center;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;justify-content:center;';
-    sd.innerHTML='<div style="font-size:1.2rem;font-weight:800;color:#f97316;line-height:1">'+s[0]+'</div><div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:3px">'+s[1]+'</div>';
-    statsBar.appendChild(sd);
-  });
+  var sd=document.createElement('div');
+  sd.style.cssText='flex:1;padding:10px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center;';
+  sd.innerHTML='<div style="font-size:1.2rem;font-weight:800;color:#f97316;line-height:1">40+</div><div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:3px">Years Field Experience</div>';
+  statsBar.appendChild(sd);
 
   // Orange left accent
   var accent=document.createElement('div');
@@ -165,4 +176,11 @@ var _obs=new MutationObserver(function(){
 _obs.observe(document.documentElement,{childList:true,subtree:true});
 var hero=_findHero();
 if(hero){_init(hero);}
+
+function _hideQuote(){
+  var qs=document.getElementById('quote-section');
+  if(qs){qs.style.display='none';return;}
+  setTimeout(_hideQuote,300);
+}
+_hideQuote();
 })();
