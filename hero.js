@@ -129,10 +129,12 @@ function _init(hero){
   var statsBar=document.createElement('div');
   statsBar.style.cssText='position:absolute;bottom:0;left:0;right:0;background:rgba(10,10,10,0.95);border-top:1px solid rgba(249,115,22,0.2);display:flex;z-index:3;height:60px;';
 
-  var sd=document.createElement('div');
-  sd.style.cssText='flex:1;padding:10px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center;';
-  sd.innerHTML='<div style="font-size:1.2rem;font-weight:800;color:#f97316;line-height:1">40+</div><div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:3px">Years Field Experience</div>';
-  statsBar.appendChild(sd);
+  [['15+','Years Experience'],['50+','Clients Served']].forEach(function(s){
+    var sd=document.createElement('div');
+    sd.style.cssText='flex:1;padding:10px 20px;text-align:center;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;justify-content:center;';
+    sd.innerHTML='<div style="font-size:1.2rem;font-weight:800;color:#f97316;line-height:1">'+s[0]+'</div><div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-top:3px">'+s[1]+'</div>';
+    statsBar.appendChild(sd);
+  });
 
   // Orange left accent
   var accent=document.createElement('div');
