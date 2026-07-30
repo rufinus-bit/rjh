@@ -103,7 +103,7 @@ _hideQuote();
   var twEl=document.createElement('div');
   twEl.style.cssText='font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:#f97316;line-height:1.1;min-height:3.6rem;margin-bottom:10px;white-space:normal;';
   var twSpan=document.createElement('span');
-  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;animation:rjblink 1.4s steps(1) infinite;';
+  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;animation:rjblink 1.5s steps(1) infinite;';
   twEl.appendChild(twSpan);
 
   var divider=document.createElement('div');
@@ -130,11 +130,13 @@ _hideQuote();
     var navBtns=document.querySelectorAll('button,a');
     for(var i=0;i<navBtns.length;i++){
       var t=navBtns[i].textContent||navBtns[i].innerText||'';
-      if(t.toLowerCase().indexOf('catalog')!==-1&&navBtns[i]!==btn2){navBtns[i].click();return;}
-    }
-  };
+      if(t.toLowerCase().indexOf('catalog')!==-1&&navBtns[i]!==btn2){navBtns[i].click();return;};
+  btns.appendChild(btn3);
+  btn3.textContent='Get a Quote';
+  btn3.style.cssText='background:#f97316;color:#fff;padding:10px 20px;border:none;font-size:12px;font-weight:700;border-radius:4px;cursor:pointer;';
+  btn3.onclick=function(){ window.location.href='/quotation.html'; };
 
-  btns.appendChild(btn1);btns.appendChild(btn2);
+  btns.appendChild(btn1);btns.appendChild(btn2);btns.appendChild(btn3);
   leftPanel.appendChild(badge);leftPanel.appendChild(weBuild);leftPanel.appendChild(twEl);
   leftPanel.appendChild(divider);leftPanel.appendChild(descEl);leftPanel.appendChild(btns);
 
@@ -166,7 +168,7 @@ _hideQuote();
     var w=_words[_wi];
     if(!_del){twSpan.textContent=w.slice(0,_ci+1);_ci++;if(_ci>=w.length)_del=true;}
     else{twSpan.textContent=w.slice(0,_ci-1);_ci--;if(_ci<=0){_del=false;_wi=(_wi+1)%_words.length;}}
-  },160);
+  },80);
 }
 
 var _obs=new MutationObserver(function(){
