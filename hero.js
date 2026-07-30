@@ -101,9 +101,9 @@ _hideQuote();
   weBuild.textContent='We build';
 
   var twEl=document.createElement('div');
-  twEl.style.cssText='font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:#f97316;line-height:1.1;min-height:2.5rem;margin-bottom:10px;';
+  twEl.style.cssText='font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:#f97316;line-height:1.1;min-height:3.6rem;margin-bottom:10px;white-space:normal;';
   var twSpan=document.createElement('span');
-  twSpan.style.cssText='border-right:2px solid #f97316;padding-right:3px;';
+  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;animation:rjblink 1s steps(1) infinite;';
   twEl.appendChild(twSpan);
 
   var divider=document.createElement('div');
@@ -117,7 +117,7 @@ _hideQuote();
   btns.style.cssText='display:flex;gap:10px;flex-wrap:wrap;';
 
   var btn1=document.createElement('button');
-  btn1.textContent='Request a Custom Quote';
+  btn1.textContent='Get a Quote';
   btn1.style.cssText='background:#f97316;color:#fff;padding:10px 20px;border:none;font-size:12px;font-weight:700;border-radius:4px;cursor:pointer;';
   btn1.onclick=function(){
     window.location.href='/quotation.html';
