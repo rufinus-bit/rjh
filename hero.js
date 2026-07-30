@@ -103,7 +103,7 @@ _hideQuote();
   var twEl=document.createElement('div');
   twEl.style.cssText='font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:#f97316;line-height:1.1;min-height:3.6rem;margin-bottom:10px;white-space:normal;';
   var twSpan=document.createElement('span');
-  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;animation:rjblink 1s steps(1) infinite;';
+  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;animation:rjblink 1.4s steps(1) infinite;';
   twEl.appendChild(twSpan);
 
   var divider=document.createElement('div');
@@ -166,7 +166,7 @@ _hideQuote();
     var w=_words[_wi];
     if(!_del){twSpan.textContent=w.slice(0,_ci+1);_ci++;if(_ci>=w.length)_del=true;}
     else{twSpan.textContent=w.slice(0,_ci-1);_ci--;if(_ci<=0){_del=false;_wi=(_wi+1)%_words.length;}}
-  },80);
+  },160);
 }
 
 var _obs=new MutationObserver(function(){
