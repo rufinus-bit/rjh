@@ -71,27 +71,31 @@
 <!-- Form -->
 <div class="form-container">
   <div class="form-card">
-    <form id="quoteForm">
+    <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="quote-request"/>
+      <p style="display:none">
+        <label>Don't fill this out if you're human: <input name="bot-field"/></label>
+      </p>
       <div class="form-grid">
         <div class="form-group">
           <label>Full Name *</label>
-          <input type="text" placeholder="Your full name" required/>
+          <input type="text" name="full_name" placeholder="Your full name" required/>
         </div>
         <div class="form-group">
           <label>Company Name</label>
-          <input type="text" placeholder="Your company"/>
+          <input type="text" name="company_name" placeholder="Your company"/>
         </div>
         <div class="form-group">
           <label>Email Address *</label>
-          <input type="email" placeholder="your@email.com" required/>
+          <input type="email" name="email" placeholder="your@email.com" required/>
         </div>
         <div class="form-group">
           <label>Phone Number *</label>
-          <input type="tel" placeholder="+91 XXXXX XXXXX" required/>
+          <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required/>
         </div>
         <div class="form-group">
           <label>Furnace Type *</label>
-          <select required>
+          <select name="furnace_type" required>
             <option value="">Select furnace type</option>
             <option>Induction Melting Furnace</option>
             <option>Electric Arc Furnace</option>
@@ -109,15 +113,15 @@
         </div>
         <div class="form-group">
           <label>Capacity Required</label>
-          <input type="text" placeholder="e.g. 500kg, 1000L"/>
+          <input type="text" name="capacity" placeholder="e.g. 500kg, 1000L"/>
         </div>
         <div class="form-group">
           <label>Temperature Range</label>
-          <input type="text" placeholder="e.g. Up to 1200°C"/>
+          <input type="text" name="temperature_range" placeholder="e.g. Up to 1200°C"/>
         </div>
         <div class="form-group">
           <label>Budget Range</label>
-          <select>
+          <select name="budget_range">
             <option value="">Select budget range</option>
             <option>Under ₹5 Lakhs</option>
             <option>₹5 - ₹15 Lakhs</option>
@@ -128,7 +132,7 @@
         </div>
         <div class="form-group full">
           <label>Special Requirements / Additional Details</label>
-          <textarea placeholder="Describe your specific requirements, application, material to be processed, etc."></textarea>
+          <textarea name="details" placeholder="Describe your specific requirements, application, material to be processed, etc."></textarea>
         </div>
       </div>
       <button type="submit" class="submit-btn">Submit Quote Request</button>
@@ -146,11 +150,30 @@
 </footer>
 
 <script>
+function encodeForm(data){
+  return Object.keys(data).map(function(key){
+    return encodeURIComponent(key)+'='+encodeURIComponent(data[key]);
+  }).join('&');
+}
+
 document.getElementById('quoteForm').onsubmit=function(e){
   e.preventDefault();
-  this.style.display='none';
-  document.getElementById('successMsg').style.display='block';
-  window.scrollTo({top:document.querySelector('.form-card').offsetTop,behavior:'smooth'});
+  var form=this;
+  var formData=new FormData(form);
+  var payload={};
+  formData.forEach(function(value,key){payload[key]=value;});
+
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: encodeForm(payload)
+  }).then(function(){
+    form.style.display='none';
+    document.getElementById('successMsg').style.display='block';
+    window.scrollTo({top:document.querySelector('.form-card').offsetTop,behavior:'smooth'});
+  }).catch(function(){
+    alert('Sorry, something went wrong sending your request. Please call us directly at +91 95008 93151 or try again.');
+  });
 };
 
 // Pre-select furnace type from URL

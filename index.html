@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/logo_transparent.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RJ HEAT TECH SERVICES - Industrial Furnace Manufacturing</title>
     <meta name="description" content="Leading manufacturer of industrial furnaces including induction melting, heat treatment, and specialized furnaces. 15+ years of engineering excellence and quality manufacturing." />
@@ -26,5 +26,25 @@
     <div id="root"></div>
     <script src="/hero.js"></script>
     <script src="/furnace_slides.js"></script>
+    <script>
+    // If arriving via a link to /#catalog (e.g. from the quotation page nav),
+    // click the "Complete Catalog" nav button once the app has mounted.
+    (function(){
+      if(window.location.hash !== '#catalog') return;
+      var tries = 0;
+      var timer = setInterval(function(){
+        tries++;
+        var buttons = document.querySelectorAll('button');
+        for(var i=0;i<buttons.length;i++){
+          if(buttons[i].textContent.trim() === 'Complete Catalog' || buttons[i].textContent.trim() === 'Catalog'){
+            buttons[i].click();
+            clearInterval(timer);
+            return;
+          }
+        }
+        if(tries > 40) clearInterval(timer); // give up after ~10s
+      }, 250);
+    })();
+    </script>
   </body>
 </html>
