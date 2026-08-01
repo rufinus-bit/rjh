@@ -103,7 +103,7 @@ _hideQuote();
   var twEl=document.createElement('div');
   twEl.style.cssText='font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:#f97316;line-height:1.1;min-height:3.6rem;margin-bottom:10px;white-space:normal;';
   var twSpan=document.createElement('span');
-  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;animation:rjblink 1.4s steps(1) infinite;';
+  twSpan.style.cssText='display:inline-block;white-space:normal;word-break:break-word;border-right:2px solid #f97316;padding-right:3px;';
   twEl.appendChild(twSpan);
 
   var divider=document.createElement('div');
