@@ -184,6 +184,8 @@ _obs.observe(document.documentElement,{childList:true,subtree:true});
   // Also try after a short delay in case React renders later
   setTimeout(_addNavQuoteButton, 500);
   setTimeout(_addNavQuoteButton, 2000);
+  setTimeout(_removeCatalogFromNav, 500);
+  setTimeout(_removeCatalogFromNav, 2000);
 
 function _addNavQuoteButton(){
     // Try multiple selectors for the navigation
@@ -205,6 +207,16 @@ function _addNavQuoteButton(){
     btn.setAttribute('data-rj-quote-btn', '1');
     btn.style.cssText = 'background:#f97316;color:#fff;padding:8px 16px;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;display:inline-block;margin-left:8px;';
     homeBtn.parentNode.insertBefore(btn, homeBtn.nextSibling);
+  }
+
+function _removeCatalogFromNav(){
+    var nav = document.querySelector('header, nav, [class*="header"], [class*="navbar"], [class*="nav"], .fixed, .sticky, [role="navigation"]');
+    if(!nav) return;
+    var catalogBtn = Array.from(nav.querySelectorAll('button, a')).find(function(el){
+      var t = (el.textContent||el.innerText||'').trim().toLowerCase();
+      return t === 'complete catalog' || t === 'catalog' || t.indexOf('catalog') !== -1;
+    });
+    if(catalogBtn) catalogBtn.remove();
   }
 
 function _hideQuote(){
