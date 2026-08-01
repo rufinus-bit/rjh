@@ -174,8 +174,26 @@ var _obs=new MutationObserver(function(){
   if(hero&&!hero.dataset.hi){_init(hero);}
 });
 _obs.observe(document.documentElement,{childList:true,subtree:true});
-var hero=_findHero();
-if(hero){_init(hero);}
+  var hero=_findHero();
+  if(hero){_init(hero);}
+  _addNavQuoteButton();
+
+function _addNavQuoteButton(){
+    var nav = document.querySelector('header, nav, [class*="header"], [class*="navbar"], [class*="nav"]');
+    if(!nav) return;
+    var homeBtn = Array.from(nav.querySelectorAll('button, a')).find(function(el){
+      var t = (el.textContent||el.innerText||'').trim().toLowerCase();
+      return t === 'home' || t.indexOf('home') !== -1;
+    });
+    if(!homeBtn) return;
+    if(nav.querySelector('[data-rj-quote-btn]')) return;
+    var btn = document.createElement('a');
+    btn.href = '/quotation.html';
+    btn.textContent = 'Get a Quote';
+    btn.setAttribute('data-rj-quote-btn', '1');
+    btn.style.cssText = 'background:#f97316;color:#fff;padding:8px 16px;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;display:inline-block;margin-left:8px;';
+    homeBtn.parentNode.insertBefore(btn, homeBtn.nextSibling);
+  }
 
 function _hideQuote(){
   var qs=document.getElementById('quote-section');
