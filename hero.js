@@ -176,14 +176,26 @@ var _obs=new MutationObserver(function(){
 _obs.observe(document.documentElement,{childList:true,subtree:true});
   var hero=_findHero();
   if(hero){_init(hero);}
-  _addNavQuoteButton();
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', _addNavQuoteButton);
+  } else {
+    _addNavQuoteButton();
+  }
+  // Also try after a short delay in case React renders later
+  setTimeout(_addNavQuoteButton, 500);
+  setTimeout(_addNavQuoteButton, 2000);
 
 function _addNavQuoteButton(){
-    var nav = document.querySelector('header, nav, [class*="header"], [class*="navbar"], [class*="nav"]');
-    if(!nav) return;
+    // Try multiple selectors for the navigation
+    var nav = document.querySelector('header, nav, [class*="header"], [class*="navbar"], [class*="nav"], .fixed, .sticky, [role="navigation"]');
+    if(!nav) {
+      // Fallback: look for any element containing navigation-like links
+      nav = document.body;
+    }
+    // Find Home button - try multiple text variations
     var homeBtn = Array.from(nav.querySelectorAll('button, a')).find(function(el){
       var t = (el.textContent||el.innerText||'').trim().toLowerCase();
-      return t === 'home' || t.indexOf('home') !== -1;
+      return t === 'home' || t === 'home page' || t.indexOf('home') === 0;
     });
     if(!homeBtn) return;
     if(nav.querySelector('[data-rj-quote-btn]')) return;
