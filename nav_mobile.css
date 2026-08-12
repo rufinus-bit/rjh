@@ -1,14 +1,14 @@
-/* Custom Mobile Navigation Style */
+/* Shared Custom Navigation Styles (Mobile & Desktop) - Hero Dark Theme */
 
-/* On desktop, hide mobile nav elements */
-.custom-mobile-nav, .mobile-menu-overlay {
+/* Hide custom nav elements by default */
+.custom-mobile-nav, .mobile-menu-overlay, .custom-desktop-header {
   display: none !important;
 }
 
 /* Mobile viewport styles */
 @media (max-width: 768px) {
-  /* Hide default React header and static navbars */
-  #root header, body > nav, header, nav {
+  /* Hide default React header, static navbars, and custom desktop header */
+  #root header, body > nav, header, nav, .custom-desktop-header {
     display: none !important;
   }
 
@@ -176,6 +176,180 @@
   }
 }
 
+/* Desktop viewport styles - Dark Slate & Black Theme */
+@media (min-width: 769px) {
+  /* Hide default React header and static navbars */
+  #root header, body > nav, header, nav {
+    display: none !important;
+  }
+  
+  /* Show custom desktop header */
+  .custom-desktop-header {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Padding for body to prevent content from going under fixed navbar */
+  body {
+    padding-top: 110px !important; /* 42px top bar + 68px main bar */
+  }
+
+  .custom-desktop-header .top-bar {
+    background-color: #0f172a; /* Dark slate */
+    color: #cbd5e1;
+    height: 42px;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .custom-desktop-header .top-bar-left {
+    display: flex;
+    gap: 1.5rem;
+    color: #94a3b8;
+  }
+
+  .custom-desktop-header .top-bar-right {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .custom-desktop-header .top-bar a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .custom-desktop-header .top-bar a:hover {
+    color: #f97316; /* Accent orange */
+  }
+
+  .custom-desktop-header .main-bar {
+    background-color: #0a0a0a; /* Dark black (matches hero bg) */
+    height: 68px;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #f97316; /* Orange accent line */
+  }
+
+  .custom-desktop-header .desktop-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .custom-desktop-header .desktop-logo {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+  }
+
+  .custom-desktop-header .desktop-title {
+    color: #ffffff; /* White text */
+    font-weight: 800;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .custom-desktop-header .desktop-sub {
+    color: #94a3b8; /* Slate gray */
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .custom-desktop-header .desktop-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .custom-desktop-header .desktop-nav-links > a, 
+  .custom-desktop-header .desktop-nav-links .dropdown-btn {
+    color: #cbd5e1; /* Off-white */
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .custom-desktop-header .desktop-nav-links > a:hover, 
+  .custom-desktop-header .desktop-nav-links .dropdown-btn:hover {
+    color: #f97316; /* Orange hover */
+  }
+
+  /* Dropdown container */
+  .custom-desktop-header .dropdown-container {
+    position: relative;
+  }
+
+  /* Dropdown menu list */
+  .custom-desktop-header .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 250px;
+    background-color: #0f172a; /* Dark slate */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid #1e293b;
+    padding: 0.75rem 0;
+    display: none;
+    z-index: 10000;
+  }
+
+  .custom-desktop-header .dropdown-container:hover .dropdown-menu {
+    display: block;
+    will-change: transform, opacity;
+    animation: desktopSlideDown 0.2s ease-out;
+  }
+
+  .custom-desktop-header .dropdown-item {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .custom-desktop-header .dropdown-item:hover {
+    background-color: #f97316;
+    color: #ffffff;
+  }
+
+  @keyframes desktopSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 /* Custom slider styles for Catalog page */
 .left-50-pct {
   left: 50% !important;
@@ -184,4 +358,3 @@
   width: 16px !important;
   background-color: #f97316 !important;
 }
-
