@@ -80,15 +80,327 @@ function initSliders() {
     }
   });
 }
+// Custom catalog sections and sliders code
+var customOvens = [
+  {
+    name: "Conveyor Oven",
+    type: "Continuous Processing",
+    specifications: [
+      "Max Temperature: 350°C",
+      "Belt Speed: Variable 0.1 - 2.0 m/min",
+      "Heating zones: Multi-zone digital PID control",
+      "Application: Continuous drying, curing, and preheating"
+    ]
+  },
+  {
+    name: "Industrial Batch Oven",
+    type: "Heavy-Duty Curing",
+    specifications: [
+      "Chamber volume: 1000L to 8000L",
+      "Max Temperature: 400°C",
+      "Airflow: High-volume vertical recirculating",
+      "Application: Powder coating, baking, stress relief"
+    ]
+  },
+  {
+    name: "Clean Room Oven",
+    type: "Precision Sterilization",
+    specifications: [
+      "Max Temperature: 250°C",
+      "Clean Class: 100 HEPA filtration included",
+      "Stainless steel interior and shelving",
+      "Application: Semiconductor curing, sterile drying"
+    ]
+  }
+];
 
-var obs = new MutationObserver(function() {
-  var h3s = document.querySelectorAll('h3');
-  if(h3s.length > 0) {
-    var hasText = false;
-    h3s.forEach(function(h) { if(h.innerText) hasText = true; });
-    if(hasText) { obs.disconnect(); setTimeout(initSliders, 500); }
+var customizableFurnaces = [
+  {
+    name: "Custom Pit Furnace",
+    type: "Deep Heat Treatment",
+    specifications: [
+      "Chamber size: Up to 3m depth and diameter",
+      "Max Temperature: 1200°C",
+      "Heating: Electric or Gas-fired options",
+      "Application: Deep tempering, gas carburizing"
+    ]
+  },
+  {
+    name: "Custom Bogie Hearth Furnace",
+    type: "Heavy Load Annealing",
+    specifications: [
+      "Load capacity: Up to 50 tons with motorized hearth",
+      "Max Temperature: 1250°C",
+      "Drive: Automated trolley hearth",
+      "Application: Stress relieving, large fabrication heat treatment"
+    ]
+  },
+  {
+    name: "Custom Bell Furnace",
+    type: "Controlled Atmosphere Annealing",
+    specifications: [
+      "Double hearth design for continuous production",
+      "Atmosphere: Nitrogen / Hydrogen gas purging",
+      "Max Temperature: 1100°C",
+      "Application: Bright annealing of wire coils"
+    ]
+  }
+];
+
+function setupSliderEvents(container, length) {
+  var wrapper = container.querySelector('.slider-wrapper');
+  var prev = container.querySelector('.slider-prev');
+  var next = container.querySelector('.slider-next');
+  var dots = container.querySelectorAll('.slider-dot');
+  var currentIndex = 0;
+  
+  function updateSlider() {
+    wrapper.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+    dots.forEach(function(dot, idx) {
+      if (idx === currentIndex) {
+        dot.classList.add('active-dot');
+      } else {
+        dot.classList.remove('active-dot');
+      }
+    });
+  }
+  
+  prev.onclick = function() {
+    currentIndex = (currentIndex - 1 + length) % length;
+    updateSlider();
+  };
+  
+  next.onclick = function() {
+    currentIndex = (currentIndex + 1) % length;
+    updateSlider();
+  };
+  
+  dots.forEach(function(dot, idx) {
+    dot.onclick = function() {
+      currentIndex = idx;
+      updateSlider();
+    };
+  });
+  
+  var timer = setInterval(function() {
+    if (document.body.contains(container)) {
+      currentIndex = (currentIndex + 1) % length;
+      updateSlider();
+    } else {
+      clearInterval(timer);
+    }
+  }, 4000);
+}
+
+function renderSlider(container, products, title, category) {
+  var html = '';
+  html += '<div class="custom-slider-section bg-white p-8 rounded-2xl shadow-xl mb-12">';
+  html += '  <h3 class="text-2xl font-bold text-slate-900 mb-2">' + title + '</h3>';
+  html += '  <p class="text-sm text-slate-500 mb-6">Premium customizable design. Request a custom quote for specifications.</p>';
+  
+  html += '  <div class="relative overflow-hidden w-full h-[400px] md:h-[450px] rounded-xl border border-slate-100 shadow-inner">';
+  
+  // Slide wrapper
+  html += '    <div class="slider-wrapper flex w-full h-full transition-transform duration-500 ease-in-out">';
+  
+  products.forEach(function(p, i) {
+    html += '      <div class="slide-item flex-shrink-0 w-full h-full flex flex-col md:flex-row bg-slate-900 text-white">';
+    
+    // Left: Photo placeholder (avoid photos)
+    html += '        <div class="w-full md:w-1/2 h-48 md:h-full bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col items-center justify-center p-6 border-b md:border-b-0 md:border-r border-slate-700/50 relative overflow-hidden">';
+    html += '          <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(249,115,22,0.15),transparent_70%)]"></div>';
+    
+    // Icon
+    if (category === 'oven') {
+      html += '          <svg class="w-16 h-16 text-orange-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>';
+    } else {
+      html += '          <svg class="w-16 h-16 text-orange-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>';
+    }
+    
+    html += '          <div class="text-xs uppercase tracking-widest text-orange-400 font-bold mb-1">RJ HEAT TECH</div>';
+    html += '          <div class="text-sm font-semibold text-slate-300">PHOTO UPLOAD PENDING</div>';
+    html += '        </div>';
+    
+    // Right: Info and Specs
+    html += '        <div class="w-full md:w-1/2 p-8 flex flex-col justify-between h-auto md:h-full bg-slate-900">';
+    html += '          <div>';
+    html += '            <span class="text-xs uppercase tracking-wider bg-orange-600/20 text-orange-400 px-2 py-1 rounded font-bold">' + p.type + '</span>';
+    html += '            <h4 class="text-2xl font-bold mt-3 mb-4 text-white">' + p.name + '</h4>';
+    html += '            <ul class="space-y-2 text-sm text-slate-300">';
+    p.specifications.forEach(function(spec) {
+      html += '              <li class="flex items-center gap-2"><span class="text-orange-500">•</span> ' + spec + '</li>';
+    });
+    html += '            </ul>';
+    html += '          </div>';
+    
+    // CTA Button
+    html += '          <button class="mt-6 w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors shadow-lg shadow-orange-600/20" onclick="window.location.href=\'/quotation.html?furnace=' + encodeURIComponent(p.name) + '\'">Get a Quote</button>';
+    
+    html += '        </div>';
+    html += '      </div>';
+  });
+  
+  html += '    </div>';
+  
+  // Left/Right arrows
+  html += '    <button class="slider-prev absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white flex items-center justify-center border border-slate-700/50 z-20 transition-all">&#8592;</button>';
+  html += '    <button class="slider-next absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white flex items-center justify-center border border-slate-700/50 z-20 transition-all">&#8594;</button>';
+  
+  // Dot indicators
+  html += '    <div class="slider-dots absolute bottom-4 left-50-pct transform -translate-x-1/2 flex gap-2 z-20">';
+  products.forEach(function(_, i) {
+    html += '      <div class="slider-dot w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all ' + (i===0?'active-dot':'') + '" data-slide-to="' + i + '"></div>';
+  });
+  html += '    </div>';
+  
+  html += '  </div>';
+  html += '</div>';
+  
+  container.innerHTML = html;
+  setupSliderEvents(container, products.length);
+}
+
+function injectCustomCatalogElements() {
+  var filterContainer = Array.from(document.querySelectorAll('button')).find(function(el) {
+    return el.textContent.trim() === 'All Furnaces';
+  });
+  if (!filterContainer) return;
+  filterContainer = filterContainer.parentElement;
+
+  // Check if already injected
+  if (filterContainer.querySelector('[data-custom-category="1"]')) return;
+
+  // Create custom buttons
+  var furnaceBtn = document.createElement('button');
+  furnaceBtn.textContent = 'Industrial Furnace';
+  furnaceBtn.className = 'custom-filter-btn px-4 py-2 rounded-lg transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200';
+  furnaceBtn.setAttribute('data-category', 'furnace');
+  furnaceBtn.setAttribute('data-custom-category', '1');
+  
+  var ovenBtn = document.createElement('button');
+  ovenBtn.textContent = 'Industrial Oven';
+  ovenBtn.className = 'custom-filter-btn px-4 py-2 rounded-lg transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200';
+  ovenBtn.setAttribute('data-category', 'oven');
+  ovenBtn.setAttribute('data-custom-category', '1');
+
+  var customizableBtn = document.createElement('button');
+  customizableBtn.textContent = 'Customizable Furnace';
+  customizableBtn.className = 'custom-filter-btn px-4 py-2 rounded-lg transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200';
+  customizableBtn.setAttribute('data-category', 'customizable');
+  customizableBtn.setAttribute('data-custom-category', '1');
+  
+  filterContainer.appendChild(furnaceBtn);
+  filterContainer.appendChild(ovenBtn);
+  filterContainer.appendChild(customizableBtn);
+
+  // Setup click listeners for all buttons in container
+  var allButtons = Array.from(filterContainer.querySelectorAll('button'));
+  allButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      // Deactivate all buttons
+      allButtons.forEach(function(b) {
+        b.className = 'custom-filter-btn px-4 py-2 rounded-lg transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200';
+        b.classList.remove('bg-orange-600', 'text-white');
+      });
+      // Activate clicked button
+      btn.className = 'custom-filter-btn px-4 py-2 rounded-lg transition-colors bg-orange-600 text-white';
+      
+      var cat = btn.getAttribute('data-category');
+      var isCustom = btn.getAttribute('data-custom-category') === '1';
+      
+      var grid = Array.from(document.querySelectorAll('div')).find(function(el) {
+        return el.className.indexOf('grid md:grid-cols-2') !== -1;
+      });
+      
+      var customContainer = document.getElementById('custom-catalog-container');
+      if (grid && !customContainer) {
+        customContainer = document.createElement('div');
+        customContainer.id = 'custom-catalog-container';
+        customContainer.className = 'w-full mt-8';
+        grid.parentNode.insertBefore(customContainer, grid.nextSibling);
+      }
+
+      if (isCustom) {
+        if (grid) grid.style.display = 'none';
+        if (customContainer) customContainer.style.display = 'block';
+
+        if (cat === 'furnace') {
+          if (grid) {
+            grid.style.display = 'grid';
+            if (customContainer) customContainer.style.display = 'none';
+            
+            var cards = Array.from(grid.children);
+            var meltingFurnaces = ["Electric Arc Furnace", "Reverberatory Furnace", "Crucible Furnace", "Crucible", "Induction Melting Furnace"];
+            cards.forEach(function(card) {
+              var h3 = card.querySelector('h3');
+              var name = (h3 ? h3.textContent || h3.innerText : '').trim();
+              if (meltingFurnaces.indexOf(name) !== -1) {
+                card.style.display = 'none';
+              } else {
+                card.style.display = 'block';
+              }
+            });
+          }
+        } else if (cat === 'oven') {
+          renderSlider(customContainer, customOvens, "Industrial Ovens", "oven");
+        } else if (cat === 'customizable') {
+          renderSlider(customContainer, customizableFurnaces, "Customizable Furnaces", "customizable");
+        }
+      } else {
+        if (grid) {
+          grid.style.display = 'grid';
+          var cards = Array.from(grid.children);
+          cards.forEach(function(card) { card.style.display = 'block'; });
+        }
+        if (customContainer) customContainer.style.display = 'none';
+      }
+    });
+  });
+}
+
+// Observe modifications continuously (supports React page switches)
+var catalogObserver = new MutationObserver(function() {
+  var h2 = Array.from(document.querySelectorAll('h2')).find(function(el) {
+    return (el.textContent || el.innerText || '').trim() === 'Complete Furnace Catalog';
+  });
+  if (h2) {
+    var customBtn = document.querySelector('[data-custom-category="1"]');
+    if (!customBtn) {
+      injectCustomCatalogElements();
+    } else {
+      var activeBtn = document.querySelector('.custom-filter-btn.bg-orange-600');
+      if (activeBtn) {
+        var cat = activeBtn.getAttribute('data-category');
+        var grid = Array.from(document.querySelectorAll('div')).find(function(el) {
+          return el.className.indexOf('grid md:grid-cols-2') !== -1;
+        });
+        var customContainer = document.getElementById('custom-catalog-container');
+        
+        if (cat === 'furnace') {
+          if (grid && grid.style.display !== 'grid') grid.style.display = 'grid';
+          if (customContainer && customContainer.style.display !== 'none') customContainer.style.display = 'none';
+          
+          var cards = Array.from(grid.children);
+          var meltingFurnaces = ["Electric Arc Furnace", "Reverberatory Furnace", "Crucible Furnace", "Crucible", "Induction Melting Furnace"];
+          cards.forEach(function(card) {
+            var h3 = card.querySelector('h3');
+            var name = (h3 ? h3.textContent || h3.innerText : '').trim();
+            if (meltingFurnaces.indexOf(name) !== -1) {
+              if (card.style.display !== 'none') card.style.display = 'none';
+            } else {
+              if (card.style.display !== 'block') card.style.display = 'block';
+            }
+          });
+        } else if (cat === 'oven' || cat === 'customizable') {
+          if (grid && grid.style.display !== 'none') grid.style.display = 'none';
+          if (customContainer && customContainer.style.display !== 'block') customContainer.style.display = 'block';
+        }
+      }
+    }
+  } else {
+    // Reset body style when navigating away from catalog with mobile menu
+    document.body.style.overflow = '';
   }
 });
-obs.observe(document.documentElement, {childList:true, subtree:true});
-setTimeout(initSliders, 1000);
+catalogObserver.observe(document.documentElement, { childList: true, subtree: true });
 })();

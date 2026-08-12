@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - RJ HEAT TECH SERVICES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/nav_mobile.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b}
+    /* Navbar */
+    nav{background:#0f172a;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-brand{display:flex;align-items:center;gap:14px}
+    .nav-logo{width:60px;height:60px;object-fit:contain}
+    .nav-title{color:#fff;font-weight:700;font-size:1rem;line-height:1.2}
+    .nav-sub{color:#94a3b8;font-size:0.75rem}
+    .nav-links{display:flex;gap:8px}
+    .nav-btn{padding:8px 20px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;border:none;text-decoration:none}
+    .nav-outline{background:transparent;color:#cbd5e1;border:1px solid rgba(255,255,255,0.15)}
+    .nav-active{background:#f97316;color:#fff}
+    /* Hero */
+    .hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#7c2d12 100%);padding:5rem 2rem;text-align:center;color:#fff}
+    .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1rem}
+    .hero h1 span{color:#f97316}
+    .hero p{color:#94a3b8;font-size:1.1rem;max-width:600px;margin:0 auto}
+    /* Content */
+    .container{max-width:900px;margin:3rem auto;padding:0 1.5rem}
+    .card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.06);padding:3rem;margin-bottom:2rem}
+    h2{font-size:1.75rem;color:#0f172a;margin-bottom:1.5rem;font-weight:700;position:relative;padding-bottom:10px}
+    h2::after{content:'';position:absolute;bottom:0;left:0;width:50px;height:3px;background:#f97316;border-radius:2px}
+    p{line-height:1.7;color:#475569;margin-bottom:1.5rem;font-size:1.05rem}
+    .highlight-card{background:linear-gradient(135deg,rgba(249,115,22,0.05) 0%,rgba(234,88,12,0.02) 100%);border-left:4px solid #f97316;padding:1.5rem;border-radius:0 12px 12px 0;margin:2rem 0}
+    .highlight-card p{margin-bottom:0;font-style:italic;font-weight:500;color:#334155}
+    /* Grid */
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+    .grid-item{background:#f8fafc;padding:1.5rem;border-radius:12px;border:1px solid #e2e8f0}
+    .grid-item h3{color:#0f172a;font-size:1.15rem;margin-bottom:0.75rem;font-weight:700}
+    .grid-item p{font-size:0.95rem;margin-bottom:0;line-height:1.6}
+    /* Footer */
+    footer{background:#0f172a;color:#64748b;text-align:center;padding:2rem;margin-top:4rem;font-size:0.85rem}
+    footer span{color:#f97316}
+    @media(max-width:768px){.grid{grid-template-columns:1fr}.card{padding:2rem}}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-brand">
+    <img src="/logo_transparent.png" class="nav-logo" alt="RJ Logo"/>
+    <div>
+      <div class="nav-title">RJ HEAT TECH SERVICES</div>
+      <div class="nav-sub">Industrial Furnace Solutions</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/" class="nav-btn nav-outline">Home</a>
+    <a href="/#catalog" class="nav-btn nav-outline">Catalog</a>
+    <a href="/quotation.html" class="nav-btn nav-outline">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>About <span>Our Company</span></h1>
+  <p>Engineering excellence, custom solutions, and decades of expertise in industrial thermal engineering.</p>
+</div>
+
+<!-- Content -->
+<div class="container">
+  <div class="card">
+    <h2>Who We Are</h2>
+    <p>Established in 1989 in Coimbatore, Tamil Nadu, RJ HEAT TECH SERVICES has grown into a leading manufacturer and service provider for all types of heat treatment furnaces and allied industrial equipment.</p>
+    <p>Our commitment to custom engineering, reliability, and technical innovation has made us a trusted partner to hundreds of clients across various industrial sectors including automotive, aerospace, foundry, and steel processing.</p>
+    
+    <div class="highlight-card">
+      <p>"With over 35 years of field experience, we don't just build furnaces—we engineer high-performance thermal solutions designed for maximum efficiency and longevity."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Our Core Strengths</h2>
+    <div class="grid">
+      <div class="grid-item">
+        <h3>Custom Engineering</h3>
+        <p>We tailor each furnace system to meet the precise dimensions, thermal cycles, and automation requirements of your production workflow.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Decades of Expertise</h3>
+        <p>Our experienced team of engineers and technicians brings deep knowledge of metallurgy and thermal dynamics to every project.</p>
+      </div>
+      <div class="grid-item">
+        <h3>End-to-End Support</h3>
+        <p>From conceptual design and fabrication to commissioning, maintenance, and rework, we support your operations at every stage.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Quality Fabrication</h3>
+        <p>We use premium materials and components to ensure our systems deliver robust performance under the most demanding conditions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 <span>RJ Heat Tech Services</span> · Coimbatore, Tamil Nadu · +91 95008 93151</p>
+</footer>
+
+<script src="/nav_mobile.js"></script>
+</body>
+</html>

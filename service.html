@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Service & Rework - RJ HEAT TECH SERVICES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/nav_mobile.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b}
+    /* Navbar */
+    nav{background:#0f172a;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-brand{display:flex;align-items:center;gap:14px}
+    .nav-logo{width:60px;height:60px;object-fit:contain}
+    .nav-title{color:#fff;font-weight:700;font-size:1rem;line-height:1.2}
+    .nav-sub{color:#94a3b8;font-size:0.75rem}
+    .nav-links{display:flex;gap:8px}
+    .nav-btn{padding:8px 20px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;border:none;text-decoration:none}
+    .nav-outline{background:transparent;color:#cbd5e1;border:1px solid rgba(255,255,255,0.15)}
+    .nav-active{background:#f97316;color:#fff}
+    /* Hero */
+    .hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#7c2d12 100%);padding:5rem 2rem;text-align:center;color:#fff}
+    .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1rem}
+    .hero h1 span{color:#f97316}
+    .hero p{color:#94a3b8;font-size:1.1rem;max-width:600px;margin:0 auto}
+    /* Content */
+    .container{max-width:900px;margin:3rem auto;padding:0 1.5rem}
+    .card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.06);padding:3rem;margin-bottom:2rem}
+    h2{font-size:1.75rem;color:#0f172a;margin-bottom:1.5rem;font-weight:700;position:relative;padding-bottom:10px}
+    h2::after{content:'';position:absolute;bottom:0;left:0;width:50px;height:3px;background:#f97316;border-radius:2px}
+    p{line-height:1.7;color:#475569;margin-bottom:1.5rem;font-size:1.05rem}
+    /* Grid */
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+    .grid-item{background:#f8fafc;padding:1.5rem;border-radius:12px;border:1px solid #e2e8f0;transition:transform 0.2s,box-shadow 0.2s}
+    .grid-item:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.04)}
+    .grid-item h3{color:#0f172a;font-size:1.15rem;margin-bottom:0.75rem;font-weight:700}
+    .grid-item p{font-size:0.95rem;margin-bottom:0;line-height:1.6}
+    .cta-container{text-align:center;margin-top:3rem}
+    .cta-btn{display:inline-block;background:#f97316;color:#fff;font-weight:700;padding:12px 32px;border-radius:8px;text-decoration:none;transition:background 0.2s}
+    .cta-btn:hover{background:#ea580c}
+    /* Footer */
+    footer{background:#0f172a;color:#64748b;text-align:center;padding:2rem;margin-top:4rem;font-size:0.85rem}
+    footer span{color:#f97316}
+    @media(max-width:768px){.grid{grid-template-columns:1fr}.card{padding:2rem}}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-brand">
+    <img src="/logo_transparent.png" class="nav-logo" alt="RJ Logo"/>
+    <div>
+      <div class="nav-title">RJ HEAT TECH SERVICES</div>
+      <div class="nav-sub">Industrial Furnace Solutions</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/" class="nav-btn nav-outline">Home</a>
+    <a href="/#catalog" class="nav-btn nav-outline">Catalog</a>
+    <a href="/quotation.html" class="nav-btn nav-outline">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Service & <span>Furnace Rework</span></h1>
+  <p>Maximize furnace uptime and efficiency with our professional maintenance and overhaul solutions.</p>
+</div>
+
+<!-- Content -->
+<div class="container">
+  <div class="card">
+    <h2>Our Service Capabilities</h2>
+    <p>At RJ HEAT TECH SERVICES, we don't just manufacture new furnaces; we provide comprehensive repair, upgrade, and maintenance services for existing systems of any make or brand. Our engineering team can analyze performance issues and restore your equipment to optimal working condition.</p>
+    
+    <div class="grid">
+      <div class="grid-item">
+        <h3>Heating Element Replacement</h3>
+        <p>Expert winding and replacement of high-quality Nichrome, Kanthal, or custom alloy heating elements to restore original thermal capacity.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Refractory & Insulation Relining</h3>
+        <p>Complete or partial relining using high-temperature ceramic fiber modules, firebricks, and castables to improve energy efficiency.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Control Panel Upgrades</h3>
+        <p>Modernizing legacy control panels with advanced PID temperature controllers, PLC systems, thyristor power controllers, and touchscreens.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Capacity & Temp Upgrades</h3>
+        <p>Engineering modifications to increase chamber capacity, improve temperature uniformity, or elevate maximum operating temperatures.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Thermocouple & Sensor Calibration</h3>
+        <p>Replacing, calibrating, and testing temperature sensors and instrumentation to comply with standard heat treatment certifications.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Mechanical Overhauls</h3>
+        <p>Re-building doors, pneumatic/hydraulic lifting systems, conveyor belts, and trolley drives for bogie-type furnaces.</p>
+      </div>
+    </div>
+
+    <div class="cta-container">
+      <p style="margin-bottom:1.5rem;font-weight:600;">Need immediate maintenance or want to discuss a custom rework project?</p>
+      <a href="/quotation.html" class="cta-btn">Book a Service Request</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 <span>RJ Heat Tech Services</span> · Coimbatore, Tamil Nadu · +91 95008 93151</p>
+</footer>
+
+<script src="/nav_mobile.js"></script>
+</body>
+</html>
